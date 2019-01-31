@@ -5397,7 +5397,7 @@ Blockly.Blocks.graphing_container = {
     init: function () {
         this.setColour(colorPalette.getColor('protocols'));
         this.appendDummyInput()
-                .appendField('send');
+                .appendField('send');  //TODO: Need two arguments here
         this.appendStatementInput('STACK');
         this.contextMenu = false;
     }
@@ -5430,11 +5430,14 @@ Blockly.propc.graph_output = function () {
             code += ',%d';
             varList += ', ' + Blockly.propc.valueToCode(this, 'PRINT' + i, Blockly.propc.ORDER_NONE || '0');
             labelList += this.getFieldValue("GRAPH_LABEL" + i);
-            if (Blockly.propc.valueToCode(this, 'PRINT' + (i + 1), Blockly.propc.ORDER_NONE) && i < 9)
+            if (Blockly.propc.valueToCode(this, 'PRINT' + (i + 1), Blockly.propc.ORDER_NONE) && i < 9) {
                 labelList += ',';
+            }
             i++;
-            if (i > 10)
+
+            if (i > 10) {
                 break;
+            }
         }
         code += '\\r", (CNT >> 16)' + varList + ');\n';
 
